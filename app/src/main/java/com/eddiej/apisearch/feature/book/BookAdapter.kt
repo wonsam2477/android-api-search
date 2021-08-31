@@ -2,6 +2,7 @@ package com.eddiej.apisearch.feature.book
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -9,7 +10,7 @@ import com.eddiej.apisearch.databinding.BookListItemBinding
 import com.eddiej.apisearch.model.data.Book
 
 class BookAdapter(private val viewModel: BookViewModel) :
-    ListAdapter<Book, BookAdapter.BookItemViewHolder>(BookItemDiffCallback()) {
+    PagingDataAdapter<Book, BookAdapter.BookItemViewHolder>(BookItemDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookItemViewHolder {
         val inflator = LayoutInflater.from(parent.context)

@@ -7,10 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.eddiej.apisearch.R
 import com.eddiej.apisearch.databinding.FragmentBookBinding
 import com.eddiej.apisearch.feature.BaseFragment
 import com.eddiej.apisearch.global.ProjectLayout
+import io.reactivex.rxjava3.kotlin.addTo
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 class BookFragment : BaseFragment<FragmentBookBinding>() {
 
@@ -23,10 +27,9 @@ class BookFragment : BaseFragment<FragmentBookBinding>() {
         adapter = BookAdapter(viewModel)
         binding.recyclerView.adapter = adapter
 
-        viewModel.bookList.observe(this, { result ->
-            adapter.submitList(result)
-        })
-
+//        viewModel.bookPagingData.observe(this, { result ->
+//            adapter.submitData(lifecycle, result)
+//        })
     }
 
     override fun bindViews() {
@@ -34,6 +37,10 @@ class BookFragment : BaseFragment<FragmentBookBinding>() {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!query.isNullOrEmpty()) {
                     viewModel.getList(query)
+                        .subscribe {
+                            adapter.submitData(lifecycle, it)
+                        }
+                        .addTo(disposable)
                 }
 
                 return false

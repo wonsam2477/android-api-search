@@ -14,8 +14,4 @@ class MainViewModel : BaseViewModel() {
     private val _loadingState = MutableLiveData<LoadingState>()
     val loadingState: LiveData<LoadingState>
         get() = _loadingState
-
-    override fun init() {
-
-    }
 }

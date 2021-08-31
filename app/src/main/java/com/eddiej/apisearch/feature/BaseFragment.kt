@@ -9,9 +9,12 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 
 abstract class BaseFragment<B : ViewDataBinding> : Fragment() {
     protected lateinit var binding: B
+
+    protected val disposable = CompositeDisposable()
 
     private var root: View? = null
 
@@ -51,6 +54,11 @@ abstract class BaseFragment<B : ViewDataBinding> : Fragment() {
         }
 
         return root
+    }
+
+    override fun onDestroyView() {
+        disposable.dispose()
+        super.onDestroyView()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

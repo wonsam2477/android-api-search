@@ -13,17 +13,8 @@ abstract class BaseViewModel : ViewModel() {
         val TAG: String = this::class.java.simpleName
     }
 
-    private val _baseSchedulerProvider: ISchedulerProvider
-    private val _compositeDisposable: CompositeDisposable
-
-    init {
-        _baseSchedulerProvider = DefaultSchedulerProvider()
-        _compositeDisposable = CompositeDisposable()
-
-        this.init()
-    }
-
-    abstract fun init()
+    private val _baseSchedulerProvider: ISchedulerProvider = DefaultSchedulerProvider()
+    private val _compositeDisposable: CompositeDisposable= CompositeDisposable()
 
     override fun onCleared() {
         Log.d(javaClass.simpleName, "${javaClass.simpleName} onCleared")
