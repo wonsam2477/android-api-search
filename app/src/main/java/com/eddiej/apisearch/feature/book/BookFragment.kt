@@ -1,20 +1,13 @@
 package com.eddiej.apisearch.feature.book
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import com.eddiej.apisearch.R
 import com.eddiej.apisearch.databinding.FragmentBookBinding
 import com.eddiej.apisearch.feature.BaseFragment
 import com.eddiej.apisearch.global.ProjectLayout
+import com.jakewharton.rxbinding4.appcompat.queryTextChanges
 import io.reactivex.rxjava3.kotlin.addTo
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
+import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 
 class BookFragment : BaseFragment<FragmentBookBinding>() {
 
@@ -29,23 +22,19 @@ class BookFragment : BaseFragment<FragmentBookBinding>() {
     }
 
     override fun bindViews() {
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                if (!query.isNullOrEmpty()) {
-                    viewModel.getList(query)
-                        .subscribe {
-                            adapter.submitData(lifecycle, it)
-                        }
-                        .addTo(disposable)
-                }
-
-                return false
+        binding.searchView.queryTextChanges()
+            // 입력 후 1초 경과 시 Query 전달
+            .debounce(1000, TimeUnit.MILLISECONDS, Schedulers.io())
+            .map { charSequence -> charSequence.toString() }
+            // 빈 문자열이나 공백은 무시
+            .filter { query -> !query.isNullOrBlank() }
+            .subscribe { query ->
+                viewModel.getList(query)
+                    .subscribe {
+                        adapter.submitData(lifecycle, it)
+                    }
+                    .addTo(disposable)
             }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return false
-            }
-        })
     }
 
     override fun getLayoutResourceId(): Int = ProjectLayout.fragment_book
