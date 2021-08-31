@@ -1,6 +1,8 @@
 package com.eddiej.apisearch.model.data
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 
 data class BookList(
@@ -16,6 +18,7 @@ data class BookList(
     val total: Int = 0
 )
 
+@Parcelize
 data class Book(
     @SerializedName("author")
     val author: String = "",
@@ -37,4 +40,4 @@ data class Book(
     val publisher: String = "",
     @SerializedName("title")
     val title: String = ""
-)
+) : Parcelable

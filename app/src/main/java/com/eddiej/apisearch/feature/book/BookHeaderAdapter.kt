@@ -35,9 +35,11 @@ class BookHeaderAdapter(private val viewModel: BookViewModel) :
                 .map { charSequence -> charSequence.toString() }
                 // 빈 문자열이나 공백은 무시
                 .filter { query -> !query.isNullOrBlank() }
-                .subscribe { query ->
+                .subscribe({ query ->
                     viewModel.pushQuery(query)
-                }
+                }, { error ->
+
+                })
         }
     }
 

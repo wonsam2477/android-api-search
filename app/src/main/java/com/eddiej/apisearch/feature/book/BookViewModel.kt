@@ -18,8 +18,16 @@ class BookViewModel : BaseViewModel() {
     val queryText: LiveData<String>
         get() = _queryText
 
+    private val _selectedItem = MutableLiveData<Book>()
+    val selectedItem: LiveData<Book>
+        get() = _selectedItem
+
     fun pushQuery(query: String) {
         _queryText.postValue(query)
+    }
+
+    fun moveToDetail(item: Book) {
+        _selectedItem.value = item
     }
 
     fun getList(query: String): Observable<PagingData<Book>> {

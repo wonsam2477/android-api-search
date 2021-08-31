@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="com.eddiej.apisearch.model.data.Book" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:flexDirection="column">
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:alignItems="center"
+                app:flexDirection="row"
+                app:justifyContent="flex_start">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Theme.BookItem.TextHeader"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Authors"
+                    app:layout_flexGrow="0.3" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Theme.BookItem.TextContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{item.author}"
+                    app:layout_flexGrow="0.7"
+                    tools:text="Rich Helton" />
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:alignItems="center"
+                app:flexDirection="row"
+                app:justifyContent="flex_start">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Theme.BookItem.TextHeader"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Authors"
+                    app:layout_flexGrow="0.3" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Theme.BookItem.TextContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{item.author}"
+                    app:layout_flexGrow="0.7"
+                    tools:text="Rich Helton" />
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:alignItems="center"
+                app:flexDirection="row"
+                app:justifyContent="flex_start">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Theme.BookItem.TextHeader"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Authors"
+                    app:layout_flexGrow="0.3" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Theme.BookItem.TextContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{item.author}"
+                    app:layout_flexGrow="0.7"
+                    tools:text="Rich Helton" />
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:alignItems="center"
+                app:flexDirection="row"
+                app:justifyContent="flex_start">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Theme.BookItem.TextHeader"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Authors"
+                    app:layout_flexGrow="0.3" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Theme.BookItem.TextContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{item.author}"
+                    app:layout_flexGrow="0.7"
+                    tools:text="Rich Helton" />
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:alignItems="center"
+                app:flexDirection="row"
+                app:justifyContent="flex_start">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Theme.BookItem.TextHeader"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Authors"
+                    app:layout_flexGrow="0.3" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Theme.BookItem.TextContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{item.author}"
+                    app:layout_flexGrow="0.7"
+                    tools:text="Rich Helton" />
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:alignItems="center"
+                app:flexDirection="row"
+                app:justifyContent="flex_start">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Theme.BookItem.TextHeader"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Authors"
+                    app:layout_flexGrow="0.3" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Theme.BookItem.TextContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{item.author}"
+                    app:layout_flexGrow="0.7"
+                    tools:text="Rich Helton" />
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:alignItems="center"
+                app:flexDirection="row"
+                app:justifyContent="flex_start">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Theme.BookItem.TextHeader"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Authors"
+                    app:layout_flexGrow="0.3" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Theme.BookItem.TextContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{item.author}"
+                    app:layout_flexGrow="0.7"
+                    tools:text="Rich Helton" />
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:alignItems="center"
+                app:flexDirection="row"
+                app:justifyContent="flex_start">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Theme.BookItem.TextHeader"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Authors"
+                    app:layout_flexGrow="0.3" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Theme.BookItem.TextContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{item.author}"
+                    app:layout_flexGrow="0.7"
+                    tools:text="Rich Helton" />
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:alignItems="center"
+                app:flexDirection="row"
+                app:justifyContent="flex_start">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Theme.BookItem.TextHeader"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Authors"
+                    app:layout_flexGrow="0.3" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Theme.BookItem.TextContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{item.author}"
+                    app:layout_flexGrow="0.7"
+                    tools:text="Rich Helton" />
+            </com.google.android.flexbox.FlexboxLayout>
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

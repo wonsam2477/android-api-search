@@ -11,7 +11,6 @@ fun loadImage(imageView: AppCompatImageView, url: String?) {
 
     Picasso.get()
         .load(url)
-        .placeholder(ProjectDrawable.ic_baseline_image)
         .error(ProjectDrawable.ic_baseline_broken_image)
         .into(imageView)
 }

@@ -33,7 +33,7 @@ class BookAdapter(private val viewModel: BookViewModel) :
             binding.executePendingBindings()
 
             binding.root.setOnClickListener {
-                // TODO: 2021-08-30 아이템 클릭 시 액션
+                viewModel.moveToDetail(item)
             }
         }
     }
