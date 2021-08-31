@@ -30,7 +30,7 @@ class BookPagingSource(private val query: String) : RxPagingSource<Int, Book>() 
     override fun loadSingle(params: LoadParams<Int>): Single<LoadResult<Int, Book>> {
         // 시작 인덱스를 1로 설정
         val nextPage = params.key ?: 1
-        Log.d("PagingSource", "key : ${params.key ?: 1}, loadSize : ${params.loadSize}")
+
         return service.getList(query, nextPage)
             .subscribeOn(Schedulers.io())
             .map { data -> toResult(data, nextPage) }
@@ -38,10 +38,12 @@ class BookPagingSource(private val query: String) : RxPagingSource<Int, Book>() 
     }
 
     private fun toResult(data: BookList, page: Int): LoadResult<Int, Book> {
+        // prevKey 필드는 추후 이전 목록 불러오기 기능을 사용할 때 설정할 것
+
         return LoadResult.Page(
             data = data.items,
-            prevKey = if (page == 1) null else page.minus(1),
-            nextKey = if (page == data.total) null else page.plus(data.display)
+            prevKey = null,
+            nextKey = if (page > data.total) null else page.plus(data.display)
         )
     }
 }

@@ -26,10 +26,6 @@ class BookFragment : BaseFragment<FragmentBookBinding>() {
 
         adapter = BookAdapter(viewModel)
         binding.recyclerView.adapter = adapter
-
-//        viewModel.bookPagingData.observe(this, { result ->
-//            adapter.submitData(lifecycle, result)
-//        })
     }
 
     override fun bindViews() {
