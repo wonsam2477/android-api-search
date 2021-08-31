@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="item"
             type="com.eddiej.apisearch.domain.data.BookItemEntity" />
@@ -47,29 +47,10 @@
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical|start"
-                android:text="@{item.title}"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_large"
-                android:textStyle="bold"
-                tools:text="Learning NServiceBus Sagas" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:gravity="center_vertical|start"
-                android:text="@{item.description}"
-                android:textSize="@dimen/text_size_small"
-                tools:text="Discover how to design, build, and test sagas and messaging with NServiceBus" />
-
         </com.google.android.material.appbar.AppBarLayout>
 
         <include
+            android:id="@+id/layoutContent"
             layout="@layout/layout_book_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

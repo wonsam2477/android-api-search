@@ -27,4 +27,18 @@
         <item name="android:textSize">@dimen/text_size_micro</item>
         <item name="android:padding">4dp</item>
     </style>
+
+    <style name="Theme.BookDetail.TextHeader" parent="Widget.AppCompat.TextView">
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:textColor">@color/blue_grey_darken_2</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:padding">4dp</item>
+    </style>
+
+    <style name="Theme.BookDetail.TextContent" parent="Widget.AppCompat.TextView">
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:textColor">@color/grey_darken_4</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:padding">4dp</item>
+    </style>
 </resources>

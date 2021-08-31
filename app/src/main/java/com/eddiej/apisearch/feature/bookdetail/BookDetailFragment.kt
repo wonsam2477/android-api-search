@@ -1,5 +1,6 @@
 package com.eddiej.apisearch.feature.bookdetail
 
+import android.graphics.Paint
 import android.os.Bundle
 import com.eddiej.apisearch.databinding.FragmentBookDetailBinding
 import com.eddiej.apisearch.domain.data.BookItemEntity
@@ -27,6 +28,10 @@ class BookDetailFragment : BaseFragment<FragmentBookDetailBinding>() {
         arguments?.let {
             val item = it.getParcelable<BookItemEntity>(PARAM_ITEM_KEY)
             binding.item = item
+        }
+
+        with(binding.layoutContent.textDiscountPrice) {
+            paintFlags = paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
         }
     }
 

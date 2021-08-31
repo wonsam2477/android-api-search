@@ -5,7 +5,7 @@
 
     <data>
 
-        <import type="androidx.core.text.HtmlCompat" />
+        <import type="android.text.TextUtils" />
 
         <variable
             name="item"
@@ -56,7 +56,7 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:text="@{HtmlCompat.fromHtml(item.title, HtmlCompat.FROM_HTML_MODE_LEGACY)}"
+                    android:text="@{item.title}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_medium"
                     tools:text="Practical MongoDB" />
@@ -140,7 +140,7 @@
                         style="@style/Theme.BookItem.TextContent"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="@{item.price}"
+                        android:text="@{TextUtils.isEmpty(item.discount) ? item.price : item.discount}"
                         app:layout_flexGrow="0.7"
                         tools:text="38000" />
                 </com.google.android.flexbox.FlexboxLayout>

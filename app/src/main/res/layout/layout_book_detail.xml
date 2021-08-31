@@ -4,6 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
         <variable
             name="item"
             type="com.eddiej.apisearch.domain.data.BookItemEntity" />
@@ -18,6 +23,16 @@
             android:layout_height="wrap_content"
             app:flexDirection="column">
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|start"
+                android:text="@{item.title}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_large"
+                android:textStyle="bold"
+                tools:text="Learning NServiceBus Sagas" />
+
             <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -26,14 +41,14 @@
                 app:justifyContent="flex_start">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Theme.BookItem.TextHeader"
+                    style="@style/Theme.BookDetail.TextHeader"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Authors"
+                    android:text="저자"
                     app:layout_flexGrow="0.3" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Theme.BookItem.TextContent"
+                    style="@style/Theme.BookDetail.TextContent"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@{item.author}"
@@ -49,19 +64,19 @@
                 app:justifyContent="flex_start">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Theme.BookItem.TextHeader"
+                    style="@style/Theme.BookDetail.TextHeader"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Authors"
+                    android:text="출판"
                     app:layout_flexGrow="0.3" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Theme.BookItem.TextContent"
+                    style="@style/Theme.BookDetail.TextContent"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@{item.author}"
+                    android:text="@{item.publisher}"
                     app:layout_flexGrow="0.7"
-                    tools:text="Rich Helton" />
+                    tools:text="SoftmooreConsulting" />
             </com.google.android.flexbox.FlexboxLayout>
 
             <com.google.android.flexbox.FlexboxLayout
@@ -72,19 +87,19 @@
                 app:justifyContent="flex_start">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Theme.BookItem.TextHeader"
+                    style="@style/Theme.BookDetail.TextHeader"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Authors"
+                    android:text="출판일"
                     app:layout_flexGrow="0.3" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Theme.BookItem.TextContent"
+                    style="@style/Theme.BookDetail.TextContent"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@{item.author}"
+                    android:text="@{item.pubdate}"
                     app:layout_flexGrow="0.7"
-                    tools:text="Rich Helton" />
+                    tools:text="2021년01월01일" />
             </com.google.android.flexbox.FlexboxLayout>
 
             <com.google.android.flexbox.FlexboxLayout
@@ -95,19 +110,19 @@
                 app:justifyContent="flex_start">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Theme.BookItem.TextHeader"
+                    style="@style/Theme.BookDetail.TextHeader"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Authors"
+                    android:text="ISBN"
                     app:layout_flexGrow="0.3" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Theme.BookItem.TextContent"
+                    style="@style/Theme.BookDetail.TextContent"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@{item.author}"
+                    android:text="@{item.isbn}"
                     app:layout_flexGrow="0.7"
-                    tools:text="Rich Helton" />
+                    tools:text="1734139153 9781734139150" />
             </com.google.android.flexbox.FlexboxLayout>
 
             <com.google.android.flexbox.FlexboxLayout
@@ -118,19 +133,37 @@
                 app:justifyContent="flex_start">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Theme.BookItem.TextHeader"
+                    style="@style/Theme.BookDetail.TextHeader"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Authors"
+                    android:text="가격"
                     app:layout_flexGrow="0.3" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Theme.BookItem.TextContent"
+                <com.google.android.flexbox.FlexboxLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@{item.author}"
-                    app:layout_flexGrow="0.7"
-                    tools:text="Rich Helton" />
+                    app:alignItems="center"
+                    app:flexDirection="row"
+                    app:justifyContent="flex_start"
+                    app:layout_flexGrow="0.7">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Theme.BookDetail.TextContent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{TextUtils.isEmpty(item.discount) ? item.price : item.discount}"
+                        android:textColor="@color/primaryColor"
+                        tools:text="Rich Helton" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textDiscountPrice"
+                        style="@style/Theme.BookDetail.TextContent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{TextUtils.isEmpty(item.discount) ? null : item.price}"
+                        android:textSize="@dimen/text_size_small"
+                        tools:text="Rich Helton" />
+                </com.google.android.flexbox.FlexboxLayout>
             </com.google.android.flexbox.FlexboxLayout>
 
             <com.google.android.flexbox.FlexboxLayout
@@ -141,89 +174,35 @@
                 app:justifyContent="flex_start">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Theme.BookItem.TextHeader"
+                    style="@style/Theme.BookDetail.TextHeader"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Authors"
+                    android:text="링크"
                     app:layout_flexGrow="0.3" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Theme.BookItem.TextContent"
+                    style="@style/Theme.BookDetail.TextContent"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@{item.author}"
+                    android:text="@{item.link}"
+                    android:textSize="@dimen/text_size_small"
                     app:layout_flexGrow="0.7"
-                    tools:text="Rich Helton" />
+                    tools:text="http://book.naver.com/bookdb/book_detail.php?bid=18147588" />
             </com.google.android.flexbox.FlexboxLayout>
 
-            <com.google.android.flexbox.FlexboxLayout
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Theme.BookDetail.TextHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:alignItems="center"
-                app:flexDirection="row"
-                app:justifyContent="flex_start">
+                android:textColor="@color/blue_grey"
+                android:text="상세 소개" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Theme.BookItem.TextHeader"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Authors"
-                    app:layout_flexGrow="0.3" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Theme.BookItem.TextContent"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@{item.author}"
-                    app:layout_flexGrow="0.7"
-                    tools:text="Rich Helton" />
-            </com.google.android.flexbox.FlexboxLayout>
-
-            <com.google.android.flexbox.FlexboxLayout
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Theme.BookDetail.TextContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:alignItems="center"
-                app:flexDirection="row"
-                app:justifyContent="flex_start">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Theme.BookItem.TextHeader"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Authors"
-                    app:layout_flexGrow="0.3" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Theme.BookItem.TextContent"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@{item.author}"
-                    app:layout_flexGrow="0.7"
-                    tools:text="Rich Helton" />
-            </com.google.android.flexbox.FlexboxLayout>
-
-            <com.google.android.flexbox.FlexboxLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:alignItems="center"
-                app:flexDirection="row"
-                app:justifyContent="flex_start">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Theme.BookItem.TextHeader"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Authors"
-                    app:layout_flexGrow="0.3" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Theme.BookItem.TextContent"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@{item.author}"
-                    app:layout_flexGrow="0.7"
-                    tools:text="Rich Helton" />
-            </com.google.android.flexbox.FlexboxLayout>
+                android:text="@{item.description}"
+                tools:text="How to Build Android Apps with is a comprehensive guide that will help kick-start... and to get started building Android projects. You'll learn how to create apps and..." />
 
         </com.google.android.flexbox.FlexboxLayout>
 
