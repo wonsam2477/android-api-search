@@ -22,14 +22,6 @@ abstract class BaseActivity<B : ViewDataBinding> : AppCompatActivity() {
         DataBindingUtil.setContentView(this, getLayoutResourceId()) as B
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
     fun hideKeyboard() {
         val view = currentFocus
         if (view != null) {

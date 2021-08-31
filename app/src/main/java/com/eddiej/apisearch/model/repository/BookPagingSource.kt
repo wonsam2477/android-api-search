@@ -9,7 +9,6 @@ import com.eddiej.apisearch.model.data.BookList
 import com.eddiej.apisearch.model.network.RetrofitClient
 import com.eddiej.apisearch.model.network.interceptor.NaverAuthInterceptor
 import com.eddiej.apisearch.model.network.service.BookService
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 
@@ -30,7 +29,7 @@ class BookPagingSource(private val query: String) : RxPagingSource<Int, Book>() 
     override fun loadSingle(params: LoadParams<Int>): Single<LoadResult<Int, Book>> {
         // 시작 인덱스를 1로 설정
         val nextPage = params.key ?: 1
-
+        Log.d("PagingSource", "key : ${params.key ?: 1}, loadSize : ${params.loadSize}")
         return service.getList(query, nextPage)
             .subscribeOn(Schedulers.io())
             .map { data -> toResult(data, nextPage) }

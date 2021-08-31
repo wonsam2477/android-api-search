@@ -16,44 +16,19 @@ abstract class BaseFragment<B : ViewDataBinding> : Fragment() {
 
     protected val disposable = CompositeDisposable()
 
-    private var root: View? = null
-
     abstract fun setupViews()
-    abstract fun bindViews()
 
     @LayoutRes
     abstract fun getLayoutResourceId() : Int
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(false)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        if (root == null) {
-            binding = DataBindingUtil.inflate(inflater, getLayoutResourceId(), container, false)
-            root = binding.root
+        binding = DataBindingUtil.inflate(inflater, getLayoutResourceId(), container, false)
 
-            setupViews()
-        }
-
-        return root
+        return binding.root
     }
 
     override fun onDestroyView() {
@@ -61,15 +36,9 @@ abstract class BaseFragment<B : ViewDataBinding> : Fragment() {
         super.onDestroyView()
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        bindViews()
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.executePendingBindings()
+        setupViews()
     }
 
     fun hideKeyboard() {

@@ -2,8 +2,6 @@ package com.eddiej.apisearch.feature
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.eddiej.apisearch.util.schedulers.DefaultSchedulerProvider
-import com.eddiej.apisearch.util.schedulers.ISchedulerProvider
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 
@@ -13,7 +11,6 @@ abstract class BaseViewModel : ViewModel() {
         val TAG: String = this::class.java.simpleName
     }
 
-    private val _baseSchedulerProvider: ISchedulerProvider = DefaultSchedulerProvider()
     private val _compositeDisposable: CompositeDisposable= CompositeDisposable()
 
     override fun onCleared() {
@@ -21,8 +18,6 @@ abstract class BaseViewModel : ViewModel() {
         _compositeDisposable.dispose()
         super.onCleared()
     }
-
-    fun getSchedulerProvider(): ISchedulerProvider = _baseSchedulerProvider
 
     fun getDisposable(): CompositeDisposable = _compositeDisposable
     fun addDisposable(disposable: Disposable) {
