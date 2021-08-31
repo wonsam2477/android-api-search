@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.eddiej.apisearch.model.data.Book" />
+
+        <variable
+            name="viewModel"
+            type="com.eddiej.apisearch.feature.book.BookViewModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple_background"
+            android:minHeight="140dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgThumb"
+                android:layout_width="140dp"
+                android:layout_height="0dp"
+                android:scaleType="fitCenter"
+                app:imageUrl="@{item.image}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@android:drawable/ic_menu_report_image" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:flexDirection="column"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgThumb"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Theme.BookItem.TextHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="@{item.title}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_medium"
+                    tools:text="Practical MongoDB" />
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:flexDirection="row">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Theme.BookItem.TextHeader"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="저자"
+                        app:layout_flexGrow="0.3" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Theme.BookItem.TextContent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@{item.author}"
+                        app:layout_flexGrow="0.7"
+                        tools:text="강성윤" />
+                </com.google.android.flexbox.FlexboxLayout>
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:flexDirection="row">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Theme.BookItem.TextHeader"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="출판"
+                        app:layout_flexGrow="0.3" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Theme.BookItem.TextContent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@{item.publisher}"
+                        app:layout_flexGrow="0.7"
+                        tools:text="이지스퍼블리싱" />
+                </com.google.android.flexbox.FlexboxLayout>
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:flexDirection="row">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Theme.BookItem.TextHeader"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="출판일"
+                        app:layout_flexGrow="0.3" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Theme.BookItem.TextContent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@{item.pubdate}"
+                        app:layout_flexGrow="0.7"
+                        tools:text="20210830" />
+                </com.google.android.flexbox.FlexboxLayout>
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:flexDirection="row">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Theme.BookItem.TextHeader"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="가격"
+                        app:layout_flexGrow="0.3" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Theme.BookItem.TextContent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@{item.price}"
+                        app:layout_flexGrow="0.7"
+                        tools:text="38000" />
+                </com.google.android.flexbox.FlexboxLayout>
+
+            </com.google.android.flexbox.FlexboxLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
