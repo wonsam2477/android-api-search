@@ -3,23 +3,11 @@ package com.eddiej.apisearch.model.data
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
-
-
-data class BookList(
-    @SerializedName("display")
-    val display: Int = 0,
-    @SerializedName("items")
-    val items: List<Book> = listOf(),
-    @SerializedName("lastBuildDate")
-    val lastBuildDate: String = "",
-    @SerializedName("start")
-    val start: Int = 0,
-    @SerializedName("total")
-    val total: Int = 0
-)
+import java.text.SimpleDateFormat
+import java.util.*
 
 @Parcelize
-data class Book(
+data class BookItemModel(
     @SerializedName("author")
     val author: String = "",
     @SerializedName("description")

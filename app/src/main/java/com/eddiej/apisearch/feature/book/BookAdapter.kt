@@ -6,10 +6,10 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.eddiej.apisearch.databinding.BookListItemBinding
-import com.eddiej.apisearch.model.data.Book
+import com.eddiej.apisearch.domain.data.BookItemEntity
 
 class BookAdapter(private val viewModel: BookViewModel) :
-    PagingDataAdapter<Book, BookAdapter.BookItemViewHolder>(BookItemDiffCallback()) {
+    PagingDataAdapter<BookItemEntity, BookAdapter.BookItemViewHolder>(BookItemDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookItemViewHolder {
         val inflator = LayoutInflater.from(parent.context)
@@ -27,7 +27,7 @@ class BookAdapter(private val viewModel: BookViewModel) :
 
     class BookItemViewHolder constructor(private val binding: BookListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(viewModel: BookViewModel, item: Book) {
+        fun bind(viewModel: BookViewModel, item: BookItemEntity) {
             binding.viewModel = viewModel
             binding.item = item
             binding.executePendingBindings()
@@ -39,12 +39,12 @@ class BookAdapter(private val viewModel: BookViewModel) :
     }
 }
 
-class BookItemDiffCallback : DiffUtil.ItemCallback<Book>() {
-    override fun areItemsTheSame(oldItem: Book, newItem: Book): Boolean {
+class BookItemDiffCallback : DiffUtil.ItemCallback<BookItemEntity>() {
+    override fun areItemsTheSame(oldItem: BookItemEntity, newItem: BookItemEntity): Boolean {
         return oldItem.isbn == newItem.isbn
     }
 
-    override fun areContentsTheSame(oldItem: Book, newItem: Book): Boolean {
+    override fun areContentsTheSame(oldItem: BookItemEntity, newItem: BookItemEntity): Boolean {
         return oldItem == newItem
     }
 }

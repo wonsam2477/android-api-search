@@ -1,6 +1,6 @@
 package com.eddiej.apisearch.model.network.service
 
-import com.eddiej.apisearch.model.data.BookList
+import com.eddiej.apisearch.model.data.BookModel
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -18,5 +18,5 @@ interface BookService {
         @Query("query") query: String,
         @Query("start") startIndex: Int = 1,
         @Query("display") displayCount: Int = 10
-    ): Single<BookList>
+    ): Single<BookModel>
 }

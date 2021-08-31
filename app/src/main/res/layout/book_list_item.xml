@@ -9,7 +9,7 @@
 
         <variable
             name="item"
-            type="com.eddiej.apisearch.model.data.Book" />
+            type="com.eddiej.apisearch.domain.data.BookItemEntity" />
 
         <variable
             name="viewModel"
