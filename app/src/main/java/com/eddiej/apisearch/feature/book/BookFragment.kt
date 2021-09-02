@@ -25,14 +25,21 @@ class BookFragment : BaseFragment<FragmentBookBinding>() {
     private lateinit var bookAdapter: BookAdapter
 
     override fun setupViews() {
+        binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
         // 페이징 어댑터
         bookAdapter = BookAdapter(viewModel)
-        bookAdapter.withLoadStateFooter(LoadingStateAdapter(bookAdapter))
+        val loadingAdapter = LoadingStateAdapter {
+            bookAdapter.retry()
+        }
+        bookAdapter.addLoadStateListener { loadStates ->
+            loadingAdapter.loadState = loadStates.append
+        }
+        val concatAdapter = ConcatAdapter(bookAdapter, loadingAdapter)
+        binding.recyclerView.adapter = concatAdapter
 
-        binding.recyclerView.adapter = bookAdapter
-
+        binding.btnRefresh.setOnClickListener { bookAdapter.refresh() }
         binding.searchView.queryTextChanges()
             // 입력 후 1초 경과 시 Query 전달
             .debounce(1000, TimeUnit.MILLISECONDS, Schedulers.io())

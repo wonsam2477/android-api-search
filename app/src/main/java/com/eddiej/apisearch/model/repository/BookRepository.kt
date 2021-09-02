@@ -15,7 +15,7 @@ class BookRepository @Inject constructor(private val service: BookService) {
         return Pager(config = PagingConfig(
             pageSize = 10,
             enablePlaceholders = true,
-            prefetchDistance = 5
+            prefetchDistance = 3
         ),
             pagingSourceFactory = { BookPagingSource(service, query) })
             .observable

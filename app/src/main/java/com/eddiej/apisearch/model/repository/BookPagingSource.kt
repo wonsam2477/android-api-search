@@ -12,9 +12,13 @@ import com.eddiej.apisearch.model.network.interceptor.NaverAuthInterceptor
 import com.eddiej.apisearch.model.network.service.BookService
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.delay
+import java.util.concurrent.TimeUnit
+import kotlin.math.max
 
 
-class BookPagingSource(private val service: BookService, private val query: String) : RxPagingSource<Int, BookItemEntity>() {
+class BookPagingSource(private val service: BookService, private val query: String) :
+    RxPagingSource<Int, BookItemEntity>() {
 
     override fun getRefreshKey(state: PagingState<Int, BookItemEntity>): Int? {
         return state.anchorPosition?.let { anchorPos ->
@@ -28,6 +32,7 @@ class BookPagingSource(private val service: BookService, private val query: Stri
         // 시작 인덱스를 1로 설정
         val nextPage = params.key ?: 1
         Log.d("PagingSource", "key : ${params.key ?: 1}, loadSize : ${params.loadSize}")
+
         return service.getList(query, nextPage)
             .subscribeOn(Schedulers.io())
             .map { data -> data.toMap() }
@@ -38,10 +43,19 @@ class BookPagingSource(private val service: BookService, private val query: Stri
     private fun toResult(data: BookEntity, page: Int): LoadResult<Int, BookItemEntity> {
         // prevKey 필드는 추후 이전 목록 불러오기 기능을 사용할 때 설정할 것
 
+        val prevKey = if (page == 1) {
+            null
+        } else {
+            val key = page.minus(data.display)
+            if (key < 1) 1 else key
+        }
+
+        val nextKey = if (page > data.total) null else page.plus(data.display)
+
         return LoadResult.Page(
             data = data.items,
-            prevKey = null,
-            nextKey = if (page > data.total) null else page.plus(data.display)
+            prevKey = prevKey,
+            nextKey = nextKey
         )
     }
 }
