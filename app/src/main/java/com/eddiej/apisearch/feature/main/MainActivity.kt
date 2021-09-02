@@ -6,7 +6,9 @@ import com.eddiej.apisearch.feature.BaseActivity
 import com.eddiej.apisearch.feature.book.BookFragment
 import com.eddiej.apisearch.global.ProjectLayout
 import com.eddiej.apisearch.util.FragmentUtils
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

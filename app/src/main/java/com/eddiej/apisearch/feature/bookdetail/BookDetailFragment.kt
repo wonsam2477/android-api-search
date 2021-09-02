@@ -7,7 +7,9 @@ import com.eddiej.apisearch.domain.data.BookItemEntity
 import com.eddiej.apisearch.feature.BaseFragment
 import com.eddiej.apisearch.global.ProjectLayout
 import com.eddiej.apisearch.model.data.BookItemModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BookDetailFragment : BaseFragment<FragmentBookDetailBinding>() {
 
     companion object {
