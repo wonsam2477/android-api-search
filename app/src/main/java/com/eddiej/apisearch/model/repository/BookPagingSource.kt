@@ -14,10 +14,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 
-class BookPagingSource(private val query: String) : RxPagingSource<Int, BookItemEntity>() {
-    private val service =
-        RetrofitClient.get(Constants.NAVER_API_SEARCH, listOf(NaverAuthInterceptor()))
-            .create(BookService::class.java)
+class BookPagingSource(private val service: BookService, private val query: String) : RxPagingSource<Int, BookItemEntity>() {
 
     override fun getRefreshKey(state: PagingState<Int, BookItemEntity>): Int? {
         return state.anchorPosition?.let { anchorPos ->

@@ -7,13 +7,14 @@ import androidx.paging.PagingData
 import androidx.paging.rxjava3.cachedIn
 import com.eddiej.apisearch.domain.data.BookItemEntity
 import com.eddiej.apisearch.feature.BaseViewModel
-import com.eddiej.apisearch.model.data.BookItemModel
 import com.eddiej.apisearch.model.repository.BookRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
+import javax.inject.Inject
 
-class BookViewModel : BaseViewModel() {
-    private val _repository = BookRepository()
+@HiltViewModel
+class BookViewModel @Inject constructor(private val repository: BookRepository) : BaseViewModel() {
 
     private val _queryText = MutableLiveData<String>()
     val queryText: LiveData<String>
@@ -35,7 +36,7 @@ class BookViewModel : BaseViewModel() {
 
     // 해당 검색어로 데이터 요청
     fun getList(query: String): Observable<PagingData<BookItemEntity>> {
-        return _repository
+        return repository
             .getList(query)
             .observeOn(AndroidSchedulers.mainThread())
             .cachedIn(viewModelScope)
